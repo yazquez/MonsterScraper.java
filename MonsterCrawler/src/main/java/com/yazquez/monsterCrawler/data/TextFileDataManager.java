@@ -7,8 +7,8 @@ import com.yazquez.monsterCrawler.entities.SearchEntity;
 
 public class TextFileDataManager implements DataManager {
 
-    private List<SearchEntity> searchs = new ArrayList<SearchEntity>();
-    private String[] technologies = { "spark", "hadoop", "mongodb", "scala", "cassandra", "angular" };
+    List<SearchEntity> searchs = new ArrayList<SearchEntity>();
+    List<String> technologies = new ArrayList<String>();
 
     public TextFileDataManager() {
         this.loadSearchs();
@@ -41,6 +41,6 @@ public class TextFileDataManager implements DataManager {
      * 
      * @see com.yazquez.monsterCrawler.data.DataManager#saveSearchs()
      */
-    public void saveSearchs() {
+    public void saveResults() {
     }
 }

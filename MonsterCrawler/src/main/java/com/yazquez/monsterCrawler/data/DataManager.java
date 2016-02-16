@@ -8,6 +8,6 @@ public interface DataManager {
 
 	List<SearchEntity> getSearchs();
 
-	void saveSearchs();
+	void saveResults();
 
 }

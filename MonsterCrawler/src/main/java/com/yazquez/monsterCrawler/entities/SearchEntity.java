@@ -8,7 +8,7 @@ public class SearchEntity {
     private String technology;
     private String country;
     private String city;
-    private String result;
+    private Integer result;
 
     public SearchEntity(String technology, String country, String city) {
         this.technology = technology;
@@ -21,52 +21,57 @@ public class SearchEntity {
         return date;
     }
 
-    public void setDate(Date date) {
+    public SearchEntity setDate(Date date) {
         this.date = date;
+        return this;
     }
 
     public String getTechnology() {
         return technology;
     }
 
-    public void setTechnology(String technology) {
+    public SearchEntity setTechnology(String technology) {
         this.technology = technology;
+        return this;
     }
 
     public String getCountry() {
         return country;
     }
 
-    public void setCountry(String country) {
+    public SearchEntity setCountry(String country) {
         this.country = country;
+        return this;
     }
 
     public String getCity() {
         return city;
     }
 
-    public void setCity(String city) {
+    public SearchEntity setCity(String city) {
         this.city = city;
+        return this;
     }
 
-    public String getResult() {
+    public Integer getResult() {
         return result;
     }
 
-    public void setResult(String result) {
+    public SearchEntity setResult(Integer result) {
         this.result = result;
+        return this;
     }
 
     public String toJson() {
         String stringDate = new SimpleDateFormat("yyyy/MM/dd").format(new Date());
         return String.format("{date:'%s', country:'%s', city:'%s', technology:'%s', offerts:'%s' }", stringDate,
-                this.country, (this.city.isEmpty() ? "anywhere" : city), this.technology, this.result);
+                this.country, (this.city.isEmpty() ? "anywhere" : city), this.technology, this.result.toString());
     }
 
     public String toCsv() {
         String stringDate = new SimpleDateFormat("yyyy/MM/dd").format(new Date());
         return String.format("%s,%s,%s,%s,%s", stringDate, this.country, (this.city.isEmpty() ? "anywhere" : city),
-                this.technology, this.result);
+                this.technology, this.result.toString());
     }
 
 }

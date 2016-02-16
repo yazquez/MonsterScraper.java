@@ -33,7 +33,7 @@ public class App {
         }
     }
 
-    public static String processKeyWord(String keyWord, String country, String where) throws Exception {
+    public static Integer processKeyWord(String keyWord, String country, String where) throws Exception {
         if (!where.isEmpty()) {
             keyWord += "&where=" + where;
         }
@@ -47,7 +47,7 @@ public class App {
                 break;
             }
         }
-        return (occurencesNumber.equals("Zero") ? "0" : occurencesNumber);
+        return (occurencesNumber.equals("Zero") ? 0 : Integer.parseInt(occurencesNumber));
     }
 
     public static String extractOccurencesNumber(String line) throws Exception {
