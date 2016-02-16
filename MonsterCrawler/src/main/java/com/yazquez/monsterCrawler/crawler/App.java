@@ -10,6 +10,7 @@ import java.util.Map;
 import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.yazquez.monsterCrawler.data.TextFileDataManager;
+import com.yazquez.monsterCrawler.data.DataManager;
 import com.yazquez.monsterCrawler.data.SearchEntity;
 
 public class App {
@@ -21,7 +22,7 @@ public class App {
 	private static List<SearchEntity> searchs;
 	
     public static void main(String[] args) throws Exception{
-    	TextFileDataManager dataManager  = new TextFileDataManager();
+    	DataManager dataManager  = new TextFileDataManager();
         searchs = dataManager.getSearchs();
         processSearchs();
     }

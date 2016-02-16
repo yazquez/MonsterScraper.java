@@ -1,10 +1,9 @@
 package com.yazquez.monsterCrawler.data;
 
 import java.util.ArrayList;
-import java.util.Date;
 import java.util.List;
 
-public class TextFileDataManager {
+public class TextFileDataManager implements DataManager {
 
 	
 	
@@ -15,7 +14,7 @@ public class TextFileDataManager {
 		this.loadSearchs();
 	}
 	
-	public void loadSearchs(){
+	private void loadSearchs(){
 		addSearchByTechnology(technologies,"co.uk","");
 		addSearchByTechnology(technologies,"co.uk","london");
 		addSearchByTechnology(technologies,"co.uk","reading");
@@ -34,12 +33,15 @@ public class TextFileDataManager {
 		
 	}
 	
-	public void addSearchByTechnology(String[] keyWords, String country, String city) {
+	private void addSearchByTechnology(String[] keyWords, String country, String city) {
     	for(String keyWord : keyWords){
     		getSearchs().add(new SearchEntity(keyWord, country, city));
     	}
 	}
 
+	/* (non-Javadoc)
+	 * @see com.yazquez.monsterCrawler.data.DataManager#getSearchs()
+	 */
 	public List<SearchEntity> getSearchs() {
 		return searchs;
 	}
@@ -48,6 +50,9 @@ public class TextFileDataManager {
 		this.searchs = searchs;
 	}
 	
+	/* (non-Javadoc)
+	 * @see com.yazquez.monsterCrawler.data.DataManager#saveSearchs()
+	 */
 	public void saveSearchs(){
 	}
 }
