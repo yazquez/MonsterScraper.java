@@ -1,21 +1,38 @@
 package com.yazquez.monsterCrawler.data;
 
+import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertTrue;
 
-import java.util.List;
-
+import org.junit.Before;
 import org.junit.Test;
+
+import com.yazquez.monsterCrawler.entities.SearchEntity;
 
 public class TextFileDataManagerTest {
 
-    static TextFileDataManager dataManager = new TextFileDataManager();
+    TextFileDataManager dataManager;
+
+    @Before
+    public void setUp() {
+        // String fileName = getClass().getClassLoader().getResource("monsterCrawler-config.json").getFile();
+        dataManager = new TextFileDataManager();
+    }
 
     @Test
-    public void shouldLoadTechnologies() {
-        List<String> technologies = dataManager.technologies;
-        assertTrue(String.format("The number of technologies loaded is not correct. Expected [6] loaded [%s]",
-                technologies.size()), technologies.size() == 6);
-        assertTrue("Hadoop technology not loaded", !technologies.contains("hadoop"));
-        assertTrue("Angular technology not loaded", !technologies.contains("angular"));
+    public void ConfigurationShouldBeLoaded() {
+        String configExpected = "Tecnologies:[ spark hadoop mongodb scala cassandra angular ] - Places : [{country:'co.uk', city:''} {country:'co.uk', city:'london'} {country:'co.uk', city:'reading'} {country:'co.uk', city:'brighton'} {country:'co.uk', city:'belfast'} {country:'ie', city:''} {country:'ie', city:'dublin'} {country:'ie', city:'cork'} {country:'ie', city:'athlone'} {country:'ie', city:'galway'} ";
+        String configLoaded = dataManager.configuration.toString();
+
+        assertEquals(configExpected, configLoaded);
     }
+
+    @Test
+    public void SearchsAreCorrectlyBuilded() {
+        SearchEntity searchExpected = new SearchEntity("co.uk", "", "spark");
+        SearchEntity searchBuilded = dataManager.getSearchs().get(0);
+
+        // assertEquals(searchExpected, searchBuilded);
+        assertTrue(searchExpected.equals(searchBuilded));
+    }
+
 }

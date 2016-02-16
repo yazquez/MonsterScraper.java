@@ -4,26 +4,21 @@ import java.text.SimpleDateFormat;
 import java.util.Date;
 
 public class SearchEntity {
-    private Date date;
+    private String date;
     private String technology;
     private String country;
     private String city;
     private Integer result;
 
-    public SearchEntity(String technology, String country, String city) {
+    public SearchEntity(String country, String city, String technology) {
         this.technology = technology;
         this.country = country;
         this.city = city;
-        this.date = new Date();
+        this.date = new SimpleDateFormat("yyyy/MM/dd").format(new Date());
     }
 
-    public Date getDate() {
+    public String getDate() {
         return date;
-    }
-
-    public SearchEntity setDate(Date date) {
-        this.date = date;
-        return this;
     }
 
     public String getTechnology() {
@@ -45,7 +40,7 @@ public class SearchEntity {
     }
 
     public String getCity() {
-        return city;
+        return this.city;
     }
 
     public SearchEntity setCity(String city) {
@@ -63,15 +58,31 @@ public class SearchEntity {
     }
 
     public String toJson() {
-        String stringDate = new SimpleDateFormat("yyyy/MM/dd").format(new Date());
-        return String.format("{date:'%s', country:'%s', city:'%s', technology:'%s', offerts:'%s' }", stringDate,
-                this.country, (this.city.isEmpty() ? "anywhere" : city), this.technology, this.result.toString());
+        return String.format("{date:'%s', country:'%s', city:'%s', technology:'%s', offerts:'%s' }", this.getDate(),
+                this.getCountry(), this.getCity(), this.getTechnology(), this.getResult().toString());
     }
 
     public String toCsv() {
-        String stringDate = new SimpleDateFormat("yyyy/MM/dd").format(new Date());
-        return String.format("%s,%s,%s,%s,%s", stringDate, this.country, (this.city.isEmpty() ? "anywhere" : city),
-                this.technology, this.result.toString());
+        return String.format("%s,%s,%s,%s,%s", this.getDate(), this.getCountry(), this.getCity(), this.getTechnology(),
+                this.getResult().toString());
+    }
+
+    @Override
+    public String toString() {
+        return String.format("{date:'%s', country:'%s', city:'%s', technology:'%s' }", this.date, this.country,
+                this.getCity(), this.technology);
+    }
+
+    @Override
+    public int hashCode() {
+        return -1;
+    }
+
+    @Override
+    public boolean equals(Object obj) {
+        SearchEntity objSearch = (SearchEntity) obj;
+        return this.getDate().equals(objSearch.getDate()) & this.getCountry().equals(objSearch.getCountry())
+                & this.getCity().equals(objSearch.getCity()) & this.getTechnology().equals(objSearch.getTechnology());
     }
 
 }

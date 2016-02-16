@@ -1,5 +1,7 @@
 package com.yazquez.monsterCrawler.crawler;
 
-public class Crawler {
+public interface Crawler {
+
+    void processSearchs() throws Exception;
 
 }

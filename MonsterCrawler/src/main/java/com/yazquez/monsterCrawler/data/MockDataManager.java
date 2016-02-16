@@ -5,12 +5,12 @@ import java.util.List;
 
 import com.yazquez.monsterCrawler.entities.SearchEntity;
 
-public class MockFileDataManager implements DataManager {
+public class MockDataManager implements DataManager {
 
     private List<SearchEntity> searchs = new ArrayList<SearchEntity>();
     private String[] technologies = { "spark", "hadoop", "mongodb", "scala", "cassandra", "angular" };
 
-    public MockFileDataManager() {
+    public MockDataManager() {
         this.loadSearchs();
     }
 
