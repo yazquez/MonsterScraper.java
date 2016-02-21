@@ -31,6 +31,7 @@ public class WebCrawler implements Crawler {
     public void processSearchs() throws Exception {
         for (SearchEntity search : searchs) {
             search.setResult(processKeyWord(search.getTechnology(), search.getCountry(), search.getCity()));
+            Thread.sleep(5000);
             System.out.println(search.toCsv());
         }
     }
