@@ -17,15 +17,11 @@ public class WebScraper implements Scraper {
     private static final String PROPERTY_KEY = "eVar23";
     private static final String URL_SEARCH = "http://jobsearch.monster.%s/jobs/?q=%s";
 
-    private List<SearchEntity> searchs;
-
-    public WebScraper(List<SearchEntity> searchs) {
-        this.searchs = searchs;
+    public WebScraper() {
     }
 
-
     @Override
-    public void processSearchs() throws Exception {
+    public void processSearchs(List<SearchEntity> searchs) throws Exception {
         for (SearchEntity search : searchs) {
             search.setResult(processKeyWord(search.getTechnology(), search.getCountry(), search.getCity()));
             Thread.sleep(DELAY);

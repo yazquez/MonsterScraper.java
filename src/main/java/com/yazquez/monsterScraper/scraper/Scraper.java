@@ -1,7 +1,10 @@
 package com.yazquez.monsterScraper.scraper;
 
-public interface Scraper {
+import java.util.List;
 
-    void processSearchs() throws Exception;
+import com.yazquez.monsterScraper.entities.SearchEntity;
+
+public interface Scraper {
+    void processSearchs(List<SearchEntity> searchs) throws Exception;
 
 }

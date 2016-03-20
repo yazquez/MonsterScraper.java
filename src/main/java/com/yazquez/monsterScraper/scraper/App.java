@@ -1,15 +1,22 @@
 package com.yazquez.monsterScraper.scraper;
 
+import org.springframework.context.ApplicationContext;
+import org.springframework.context.support.ClassPathXmlApplicationContext;
+
 import com.yazquez.monsterScraper.data.DataManager;
-import com.yazquez.monsterScraper.data.TextFileDataManager;
+
 
 public class App {
 
+	private static ApplicationContext context;
+
 	public static void main(String[] args) throws Exception {
-		DataManager dataManager = new TextFileDataManager();
-		Scraper scraper = new WebScraper(dataManager.getSearchs());
-		// Scraper scraper = new MockScraper(dataManager.getSearchs());
-		scraper.processSearchs();
+		context = new ClassPathXmlApplicationContext("Spring-Config.xml");
+
+		DataManager dataManager = (DataManager) context.getBean("dataManager");
+		Scraper scraper = (Scraper) context.getBean("scraper");
+		
+		scraper.processSearchs(dataManager.getSearchs());
 		dataManager.saveResults();
 	}
 }
