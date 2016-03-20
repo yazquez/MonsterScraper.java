@@ -47,7 +47,14 @@ public class WebScraper implements Scraper {
                 break;
             }
         }
-        return (occurencesNumber.equals("Zero") ? 0 : Integer.parseInt(occurencesNumber));
+        
+        if (occurencesNumber.equals("Zero")) {
+        	occurencesNumber = "0";
+        } else if (occurencesNumber.endsWith("+")){
+			occurencesNumber = occurencesNumber.substring(0, occurencesNumber.length()-1);
+		} 
+        
+        return Integer.parseInt(occurencesNumber);
     }
 
     public static String extractOccurencesNumber(String line) throws Exception {
