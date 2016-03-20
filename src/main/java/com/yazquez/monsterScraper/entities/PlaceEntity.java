@@ -1,4 +1,4 @@
-package com.yazquez.monsterCrawler.entities;
+package com.yazquez.monsterScraper.entities;
 
 public class PlaceEntity {
 

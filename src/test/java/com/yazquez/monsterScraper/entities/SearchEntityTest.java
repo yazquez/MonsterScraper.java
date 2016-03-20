@@ -1,4 +1,4 @@
-package com.yazquez.monsterCrawler.entities;
+package com.yazquez.monsterScraper.entities;
 
 import static org.junit.Assert.assertEquals;
 
@@ -7,6 +7,8 @@ import java.util.Date;
 
 import org.junit.Before;
 import org.junit.Test;
+
+import com.yazquez.monsterScraper.entities.SearchEntity;
 
 public class SearchEntityTest {
 

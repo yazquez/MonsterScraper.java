@@ -1,9 +1,9 @@
-package com.yazquez.monsterCrawler.data;
+package com.yazquez.monsterScraper.data;
 
 import java.util.ArrayList;
 import java.util.List;
 
-import com.yazquez.monsterCrawler.entities.SearchEntity;
+import com.yazquez.monsterScraper.entities.SearchEntity;
 
 public class MockDataManager implements DataManager {
 

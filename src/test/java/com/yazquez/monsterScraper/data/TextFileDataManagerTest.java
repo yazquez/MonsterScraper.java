@@ -1,4 +1,4 @@
-package com.yazquez.monsterCrawler.data;
+package com.yazquez.monsterScraper.data;
 
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertTrue;
@@ -6,7 +6,8 @@ import static org.junit.Assert.assertTrue;
 import org.junit.Before;
 import org.junit.Test;
 
-import com.yazquez.monsterCrawler.entities.SearchEntity;
+import com.yazquez.monsterScraper.data.TextFileDataManager;
+import com.yazquez.monsterScraper.entities.SearchEntity;
 
 public class TextFileDataManagerTest {
 

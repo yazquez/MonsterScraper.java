@@ -1,8 +1,8 @@
-package com.yazquez.monsterCrawler.data;
+package com.yazquez.monsterScraper.data;
 
 import java.util.List;
 
-import com.yazquez.monsterCrawler.entities.SearchEntity;
+import com.yazquez.monsterScraper.entities.SearchEntity;
 
 public interface DataManager {
 

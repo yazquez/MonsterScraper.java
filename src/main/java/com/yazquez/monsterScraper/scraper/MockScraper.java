@@ -1,15 +1,15 @@
-package com.yazquez.monsterCrawler.crawler;
+package com.yazquez.monsterScraper.scraper;
 
 import java.util.List;
 import java.util.Random;
 
-import com.yazquez.monsterCrawler.entities.SearchEntity;
+import com.yazquez.monsterScraper.entities.SearchEntity;
 
-public class MockCrawler implements Crawler {
+public class MockScraper implements Scraper {
 
     private List<SearchEntity> searchs;
 
-    public MockCrawler(List<SearchEntity> searchs) {
+    public MockScraper(List<SearchEntity> searchs) {
         this.searchs = searchs;
     }
 

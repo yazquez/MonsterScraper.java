@@ -1,4 +1,4 @@
-package com.yazquez.monsterCrawler.crawler;
+package com.yazquez.monsterScraper.scraper;
 
 import java.io.BufferedReader;
 import java.io.InputStreamReader;
@@ -8,30 +8,27 @@ import java.util.Map;
 
 import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.ObjectMapper;
-import com.yazquez.monsterCrawler.entities.SearchEntity;
+import com.yazquez.monsterScraper.entities.SearchEntity;
 
-public class WebCrawler implements Crawler {
+public class WebScraper implements Scraper {
 
+	private static final int DELAY = 1000;
     private static final String PROPERTIES_LINE_PATTERN = "_m.ATM.properties=";
     private static final String PROPERTY_KEY = "eVar23";
     private static final String URL_SEARCH = "http://jobsearch.monster.%s/jobs/?q=%s";
 
     private List<SearchEntity> searchs;
 
-    public WebCrawler(List<SearchEntity> searchs) {
+    public WebScraper(List<SearchEntity> searchs) {
         this.searchs = searchs;
     }
 
-    /*
-     * (non-Javadoc)
-     * 
-     * @see com.yazquez.monsterCrawler.crawler.Crawler#processSearchs()
-     */
+
     @Override
     public void processSearchs() throws Exception {
         for (SearchEntity search : searchs) {
             search.setResult(processKeyWord(search.getTechnology(), search.getCountry(), search.getCity()));
-            Thread.sleep(5000);
+            Thread.sleep(DELAY);
             System.out.println(search.toCsv());
         }
     }
