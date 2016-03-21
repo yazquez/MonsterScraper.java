@@ -16,3 +16,6 @@ CREATE TABLE `monster`.`results` (
   `Technology` varchar(45) DEFAULT NULL,
   `Occurences` int(10) NOT NULL DEFAULT '0',
   PRIMARY KEY (`Id`)) DEFAULT CHARSET=utf8;
+  
+CREATE USER 'monster'@'localhost' IDENTIFIED BY 'monster';
+GRANT ALL PRIVILEGES on monster.* to 'monster' identified by 'monster';
