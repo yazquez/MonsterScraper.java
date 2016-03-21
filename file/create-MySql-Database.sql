@@ -4,7 +4,7 @@ CREATE TABLE `monster`.`launchs` (
   `Id` INT NOT NULL AUTO_INCREMENT,
   `Date` DATETIME NULL,
   `Host` VARCHAR(45) NULL,
-  `Configuration` VARCHAR(255) NULL,
+  `Configuration` VARCHAR(1000) NULL,
   PRIMARY KEY (`Id`)) DEFAULT CHARSET=utf8;
 
 
