@@ -8,7 +8,6 @@ import java.util.Date;
 import java.util.List;
 
 import org.apache.commons.io.input.ReversedLinesFileReader;
-import org.codehaus.jackson.map.ObjectMapper;
 
 import com.yazquez.monsterScraper.entities.PlaceEntity;
 import com.yazquez.monsterScraper.entities.SearchConfiguration;
@@ -16,93 +15,71 @@ import com.yazquez.monsterScraper.entities.SearchEntity;
 
 public class TextFileDataManager implements DataManager {
 
-	SearchConfiguration configuration;
+    SearchConfiguration configuration = SearchConfigurationManager.loadConfiguration();
 
-	List<SearchEntity> searchs = new ArrayList<SearchEntity>();
+    List<SearchEntity> searchs = new ArrayList<SearchEntity>();
 
-	private String configurationFileName;
-	private String dataFileName;
+    private String dataFileName;
 
-	public TextFileDataManager() {
-		this.configurationFileName = "file/monsterScraper-config.json";
-		this.dataFileName = "file/monsterScraper-results.data";
+    public TextFileDataManager() {
+        this.dataFileName = "file/monsterScraper-results.data";
 
-		this.loadConfiguration();
-		this.buildSearchList();
-	}
+        this.buildSearchList();
+    }
 
-	/*
-	 * (non-Javadoc)
-	 * 
-	 * @see com.yazquez.monsterCrawler.data.DataManager#getSearchs()
-	 */
-	public List<SearchEntity> getSearchs() {
-		return searchs;
-	}
+    public List<SearchEntity> getSearchs() {
+        return searchs;
+    }
 
-	/*
-	 * (non-Javadoc)
-	 * 
-	 * @see com.yazquez.monsterCrawler.data.DataManager#saveSearchs()
-	 */
-	public void saveResults() {
-		if (currentDateIsNotSaved()) {
-			FileWriter fw = null;
-			try {
-				String lineSeparator = System.getProperty("line.separator");
-				fw = new FileWriter(this.dataFileName, true);
-				for (SearchEntity search : this.getSearchs()) {
-					fw.write(search.toCsv());
-					fw.write(lineSeparator);
-				}
-			} catch (Exception e) {
-				throw new RuntimeException(e);
-			} finally {
-				try {
-					fw.close();
-				} catch (Exception e) {
-					throw new RuntimeException(e);
-				}
-			}
-		}
-	}
+    public void saveResults() {
+        if (currentDateIsNotSaved()) {
+            FileWriter fw = null;
+            try {
+                String lineSeparator = System.getProperty("line.separator");
+                fw = new FileWriter(this.dataFileName, true);
+                for (SearchEntity search : this.getSearchs()) {
+                    fw.write(search.toCsv());
+                    fw.write(lineSeparator);
+                }
+            } catch (Exception e) {
+                throw new RuntimeException(e);
+            } finally {
+                try {
+                    fw.close();
+                } catch (Exception e) {
+                    throw new RuntimeException(e);
+                }
+            }
+        }
+    }
 
-	private void buildSearchList() {
-		for (PlaceEntity place : configuration.getPlaces()) {
-			for (String technology : configuration.getTechnologies()) {
-				searchs.add(new SearchEntity(place.getCountry(), place.getCity(), technology));
-			}
-		}
-	}
+    private void buildSearchList() {
+        for (PlaceEntity place : configuration.getPlaces()) {
+            for (String technology : configuration.getTechnologies()) {
+                searchs.add(new SearchEntity(place.getCountry(), place.getCity(), technology));
+            }
+        }
+    }
 
-	private void loadConfiguration() {
-		ObjectMapper mapper = new ObjectMapper();
-		try {
-			configuration = mapper.readValue(new File(configurationFileName), SearchConfiguration.class);
-		} catch (Exception e) {
-			throw new RuntimeException(e);
-		}
-	}
+    private boolean currentDateIsNotSaved() {
+        String lastDate = loadLastDateProcessed();
+        String currenDate = new SimpleDateFormat("yyyy/MM/dd").format(new Date());
 
-	private boolean currentDateIsNotSaved() {
-		String lastDate = loadLastDateProcessed();
-		String currenDate = new SimpleDateFormat("yyyy/MM/dd").format(new Date());
+        return !lastDate.equals(currenDate);
+    }
 
-		return !lastDate.equals(currenDate);
-	}
-
-	private String loadLastDateProcessed() {
-		String lastDate = "";
-		try (ReversedLinesFileReader reader = new ReversedLinesFileReader(new File(this.dataFileName))) {
-			String line;
-			line = reader.readLine();
-			if (line != null) {
-				lastDate = line.split(",")[0];
-			}
-			return lastDate;
-		} catch (Exception e) {
-			throw new RuntimeException(e);
-		}
-	}
+    private String loadLastDateProcessed() {
+        String lastDate = "";
+        try (ReversedLinesFileReader reader = new ReversedLinesFileReader(new File(this.dataFileName))) {
+            String line;
+            line = reader.readLine();
+            if (line != null) {
+                lastDate = line.split(",")[0];
+            }
+            return lastDate;
+        } catch (Exception e) {
+            throw new RuntimeException(e);
+        }
+    }
 
 }
