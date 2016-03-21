@@ -6,7 +6,6 @@ import static org.junit.Assert.assertTrue;
 import org.junit.Before;
 import org.junit.Test;
 
-import com.yazquez.monsterScraper.data.TextFileDataManager;
 import com.yazquez.monsterScraper.entities.SearchEntity;
 
 public class TextFileDataManagerTest {
@@ -22,7 +21,7 @@ public class TextFileDataManagerTest {
     @Test
     public void ConfigurationShouldBeLoaded() {
         String configExpected = "Tecnologies:[ spark hadoop mongodb scala cassandra angular ] - Places : [{country:'co.uk', city:''} {country:'co.uk', city:'london'} {country:'co.uk', city:'reading'} {country:'co.uk', city:'brighton'} {country:'co.uk', city:'belfast'} {country:'ie', city:''} {country:'ie', city:'dublin'} {country:'ie', city:'cork'} {country:'ie', city:'athlone'} {country:'ie', city:'galway'} ";
-        String configLoaded = dataManager.configuration.toString();
+        String configLoaded = SearchConfigurationManager.configuration.toString();
 
         assertEquals(configExpected, configLoaded);
     }

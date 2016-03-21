@@ -3,28 +3,20 @@ package com.yazquez.monsterScraper.data;
 import java.io.File;
 import java.io.FileWriter;
 import java.text.SimpleDateFormat;
-import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
 import org.apache.commons.io.input.ReversedLinesFileReader;
 
-import com.yazquez.monsterScraper.entities.PlaceEntity;
-import com.yazquez.monsterScraper.entities.SearchConfiguration;
 import com.yazquez.monsterScraper.entities.SearchEntity;
 
 public class TextFileDataManager implements DataManager {
-
-    SearchConfiguration configuration = SearchConfigurationManager.loadConfiguration();
-
-    List<SearchEntity> searchs = new ArrayList<SearchEntity>();
+    List<SearchEntity> searchs = SearchConfigurationManager.getSearchs();
 
     private String dataFileName;
 
     public TextFileDataManager() {
         this.dataFileName = "file/monsterScraper-results.data";
-
-        this.buildSearchList();
     }
 
     public List<SearchEntity> getSearchs() {
@@ -49,14 +41,6 @@ public class TextFileDataManager implements DataManager {
                 } catch (Exception e) {
                     throw new RuntimeException(e);
                 }
-            }
-        }
-    }
-
-    private void buildSearchList() {
-        for (PlaceEntity place : configuration.getPlaces()) {
-            for (String technology : configuration.getTechnologies()) {
-                searchs.add(new SearchEntity(place.getCountry(), place.getCity(), technology));
             }
         }
     }
