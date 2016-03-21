@@ -11,7 +11,7 @@
   
   <dependencies>
   
-    <!--  Spring dependencies -->
+    <!--  Spring -->
 
  	<dependency>
     	<groupId>org.springframework</groupId>
@@ -33,7 +33,7 @@
 	</dependency>
   
  
-    <!--  Jackson dependencies -->
+    <!--  Jackson -->
  
   	<dependency>
 		<groupId>com.fasterxml.jackson.core</groupId>
@@ -52,6 +52,14 @@
 		<groupId>org.codehaus.jackson</groupId>
 		<artifactId>jackson-mapper-asl</artifactId>
 		<version>1.9.13</version>
+	</dependency>
+
+   <!-- MySQL Database Driver -->
+   
+	<dependency>
+		<groupId>mysql</groupId>
+		<artifactId>mysql-connector-java</artifactId>
+		<version>5.1.38</version>
 	</dependency>
 
 	<dependency>
