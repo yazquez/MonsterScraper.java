@@ -1,6 +1,8 @@
 package com.yazquez.monsterScraper.data;
 
 import java.io.File;
+import java.net.InetAddress;
+import java.net.UnknownHostException;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -13,7 +15,7 @@ import com.yazquez.monsterScraper.entities.SearchEntity;
 public class SearchConfigurationManager {
 
     private static String configurationFileName = "file/monsterScraper-config.json";
-    static SearchConfiguration configuration = loadConfiguration();
+    private static SearchConfiguration configuration = loadConfiguration();
 
     public static SearchConfiguration loadConfiguration() {
         ObjectMapper mapper = new ObjectMapper();
@@ -34,4 +36,20 @@ public class SearchConfigurationManager {
         return searchs;
     }
 
+    public static String getHostname() {
+        String hostname = "Unknown";
+
+        try {
+            InetAddress addr;
+            addr = InetAddress.getLocalHost();
+            hostname = addr.getHostName();
+        } catch (UnknownHostException ex) {
+            System.out.println("Hostname can not be resolved");
+        }
+        return hostname;
+    }
+
+    public static SearchConfiguration getConfiguration() {
+        return configuration;
+    }
 }

@@ -21,7 +21,7 @@ public class TextFileDataManagerTest {
     @Test
     public void ConfigurationShouldBeLoaded() {
         String configExpected = "Tecnologies:[ spark hadoop mongodb scala cassandra angular ] - Places : [{country:'co.uk', city:''} {country:'co.uk', city:'london'} {country:'co.uk', city:'reading'} {country:'co.uk', city:'brighton'} {country:'co.uk', city:'belfast'} {country:'ie', city:''} {country:'ie', city:'dublin'} {country:'ie', city:'cork'} {country:'ie', city:'athlone'} {country:'ie', city:'galway'} ";
-        String configLoaded = SearchConfigurationManager.configuration.toString();
+        String configLoaded = SearchConfigurationManager.getConfiguration().toString();
 
         assertEquals(configExpected, configLoaded);
     }

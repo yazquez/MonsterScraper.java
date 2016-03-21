@@ -32,23 +32,33 @@ public class JdbcDataManager implements DataManager {
 
     @Override
     public void saveResults() {
-        String sql = "insert into results(date, country, city, technology, occurences) values (?,?,?,?,?)";
+        String insertLaunchSql = "insert into launchs(date, host, configuration) values (?,?,?)";
+        String insertSearchSql = "insert into results(date, country, city, technology, occurences) values (?,?,?,?,?)";
         Connection conn = null;
         try {
             conn = dataSource.getConnection();
-            PreparedStatement ps = conn.prepareStatement(sql);
+
+            PreparedStatement psLauch = conn.prepareStatement(insertLaunchSql);
+
+            psLauch.setDate(1, new java.sql.Date(new Date().getTime()));
+            psLauch.setString(2, SearchConfigurationManager.getHostname());
+            psLauch.setString(3, SearchConfigurationManager.getConfiguration().toString());
+
+            psLauch.executeUpdate();
+            psLauch.close();
+
+            PreparedStatement psSearchs = conn.prepareStatement(insertSearchSql);
             for (SearchEntity search : this.getSearchs()) {
                 Date date = new SimpleDateFormat("yyyy/MM/dd").parse(search.getDate());
-                ps.setDate(1, new java.sql.Date(date.getTime()));
-                ps.setString(2, search.getCountry());
-                ps.setString(3, search.getCity());
-                ps.setString(4, search.getTechnology());
-                ps.setInt(5, search.getResult());
+                psSearchs.setDate(1, new java.sql.Date(date.getTime()));
+                psSearchs.setString(2, search.getCountry());
+                psSearchs.setString(3, search.getCity());
+                psSearchs.setString(4, search.getTechnology());
+                psSearchs.setInt(5, search.getResult());
 
-                ps.executeUpdate();
+                psSearchs.executeUpdate();
             }
-
-            ps.close();
+            psSearchs.close();
 
         } catch (Exception e) {
             e.printStackTrace();
