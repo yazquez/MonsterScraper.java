@@ -7,7 +7,6 @@ import com.yazquez.monsterScraper.entities.SearchEntity;
 
 public class MockScraper implements Scraper {
 
-
     public MockScraper() {
     }
 

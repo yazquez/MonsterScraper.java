@@ -10,7 +10,7 @@ public class App {
     private static ApplicationContext context;
 
     public static void main(String[] args) throws Exception {
-        context = new ClassPathXmlApplicationContext("Spring-Config.xml");
+        context = new ClassPathXmlApplicationContext("spring-config.xml");
 
         DataManager dataManager = (DataManager) context.getBean("dataManager");
         Scraper scraper = (Scraper) context.getBean("scraper");

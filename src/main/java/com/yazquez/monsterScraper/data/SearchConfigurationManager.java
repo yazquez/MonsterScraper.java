@@ -14,13 +14,27 @@ import com.yazquez.monsterScraper.entities.SearchEntity;
 
 public class SearchConfigurationManager {
 
-    private static String configurationFileName = "file/monsterScraper-config.json";
+    private static String configurationFileName = "monsterScraper-config.json";
     private static SearchConfiguration configuration = loadConfiguration();
 
     public static SearchConfiguration loadConfiguration() {
+        SearchConfiguration searchConfiguration = null;
         ObjectMapper mapper = new ObjectMapper();
         try {
-            return mapper.readValue(new File(configurationFileName), SearchConfiguration.class);
+            String fileName;
+
+            try {
+                // When run from Eclipse, this option is fine.
+                fileName = ClassLoader.getSystemResource(configurationFileName).getFile();
+                searchConfiguration = mapper.readValue(new File(fileName), SearchConfiguration.class);
+            } catch (Exception e) {
+                // When jar is used, i want to use a "external" configuration file
+                fileName = System.getProperty("user.dir") + "/" + configurationFileName;
+                searchConfiguration = mapper.readValue(new File(fileName), SearchConfiguration.class);
+            }
+
+            return searchConfiguration;
+
         } catch (Exception e) {
             throw new RuntimeException(e);
         }
