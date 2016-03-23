@@ -3,6 +3,7 @@ package com.yazquez.monsterScraper.data;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.SQLException;
+import java.sql.Timestamp;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.List;
@@ -40,7 +41,7 @@ public class JdbcDataManager implements DataManager {
 
             PreparedStatement psLauch = conn.prepareStatement(insertLaunchSql);
 
-            psLauch.setDate(1, new java.sql.Date(new Date().getTime()));
+            psLauch.setTimestamp(1, new Timestamp(System.currentTimeMillis()));
             psLauch.setString(2, SearchConfigurationManager.getHostname());
             psLauch.setString(3, SearchConfigurationManager.getConfiguration().toString());
 
