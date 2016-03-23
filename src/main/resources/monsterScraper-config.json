@@ -1,5 +1,5 @@
 {
-	"technologies" :  ["spark","hadoop","mongodb","scala","cassandra","angular"],
+	"technologies" :  ["big-data-engineer","spark","hadoop","mongodb","scala","cassandra","angular"],
 	"places" : [ 
 		{"country" : "co.uk", "city":""},
 		{"country" : "co.uk", "city":"london"},

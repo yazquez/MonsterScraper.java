@@ -4,7 +4,7 @@ CREATE TABLE `monster`.`launchs` (
   `Id` INT NOT NULL AUTO_INCREMENT,
   `Date` DATETIME NULL,
   `Host` VARCHAR(45) NULL,
-  `Configuration` VARCHAR(255) NULL,
+  `Configuration` VARCHAR(1000) NULL,
   PRIMARY KEY (`Id`)) DEFAULT CHARSET=utf8;
 
 
@@ -16,3 +16,6 @@ CREATE TABLE `monster`.`results` (
   `Technology` varchar(45) DEFAULT NULL,
   `Occurences` int(10) NOT NULL DEFAULT '0',
   PRIMARY KEY (`Id`)) DEFAULT CHARSET=utf8;
+  
+CREATE USER 'monster'@'localhost' IDENTIFIED BY 'monster';
+GRANT ALL PRIVILEGES on monster.* to 'monster' identified by 'monster';
