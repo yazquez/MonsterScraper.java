@@ -20,7 +20,7 @@ public class TextFileDataManagerTest {
 
     @Test
     public void ConfigurationShouldBeLoaded() {
-        String configExpected = "Tecnologies:[ spark hadoop mongodb scala cassandra angular ] - Places : [{country:'co.uk', city:''} {country:'co.uk', city:'london'} {country:'co.uk', city:'reading'} {country:'co.uk', city:'brighton'} {country:'co.uk', city:'belfast'} {country:'ie', city:''} {country:'ie', city:'dublin'} {country:'ie', city:'cork'} {country:'ie', city:'athlone'} {country:'ie', city:'galway'} ";
+        String configExpected = "Tecnologies:[ big-data-engineer spark hadoop mongodb scala cassandra angular ] - Places : [{country:'co.uk', city:''} {country:'co.uk', city:'london'} {country:'co.uk', city:'reading'} {country:'co.uk', city:'brighton'} {country:'co.uk', city:'belfast'} {country:'ie', city:''} {country:'ie', city:'dublin'} {country:'ie', city:'cork'} {country:'ie', city:'athlone'} {country:'ie', city:'galway'} ";
         String configLoaded = SearchConfigurationManager.getConfiguration().toString();
 
         assertEquals(configExpected, configLoaded);
@@ -28,7 +28,7 @@ public class TextFileDataManagerTest {
 
     @Test
     public void SearchsAreCorrectlyBuilded() {
-        SearchEntity searchExpected = new SearchEntity("co.uk", "", "spark");
+        SearchEntity searchExpected = new SearchEntity("co.uk", "", "big-data-engineer");
         SearchEntity searchBuilded = dataManager.getSearchs().get(0);
 
         // assertEquals(searchExpected, searchBuilded);

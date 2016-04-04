@@ -10,7 +10,7 @@
 
  	<context:property-placeholder location="classpath:project.properties" />
 
-	<bean id="dataSource" class="org.springframework.jdbc.datasource.DriverManagerDataSource">
+ 	<bean id="dataSource" class="org.springframework.jdbc.datasource.DriverManagerDataSource">
 		<property name="driverClassName" value="${jdbc.driverClassName}" />
 		<property name="url" value="${db.url}" />
 		<property name="username" value="${db.username}" />
@@ -19,11 +19,11 @@
 	
  	<bean id="dataManager" class="com.yazquez.monsterScraper.data.JdbcDataManager" autowire="byName">
 		<property name="dataSource" ref="dataSource" />
-	</bean>
-
-	<!--<bean id="dataManager" class="com.yazquez.monsterScraper.data.TextFileDataManager"></bean> -->
-	
-	<bean id="scraper" class="com.yazquez.monsterScraper.scraper.WebScraper">
 	</bean> 
+
+<!-- 	<bean id="dataManager" class="com.yazquez.monsterScraper.data.TextFileDataManager"></bean> -->
+	
+ 	<bean id="scraper" class="com.yazquez.monsterScraper.scraper.WebScraper">
+	</bean>  
  	
 </beans>

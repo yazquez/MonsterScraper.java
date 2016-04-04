@@ -8,8 +8,6 @@ import java.util.Date;
 import org.junit.Before;
 import org.junit.Test;
 
-import com.yazquez.monsterScraper.entities.SearchEntity;
-
 public class SearchEntityTest {
 
     private SearchEntity searchEntity;
@@ -27,7 +25,7 @@ public class SearchEntityTest {
 
     @Test
     public void toJson() {
-        String expected = String.format("{date:'%s', country:'%s', city:'%s', technology:'%s', offerts:'%s' }",
+        String expected = String.format("{date:'%s', country:'%s', city:'%s', technology:'%s', offerts:'%s'}",
                 stringDate, "ie", "dublin", "hadoop", 69);
         assertEquals(expected, searchEntity.toJson());
     }

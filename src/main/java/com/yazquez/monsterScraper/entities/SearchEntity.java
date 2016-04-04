@@ -8,7 +8,7 @@ public class SearchEntity {
     private String technology;
     private String country;
     private String city;
-    private Integer result;
+    private Integer result = 0;
 
     public SearchEntity(String country, String city, String technology) {
         this.technology = technology;
@@ -58,7 +58,7 @@ public class SearchEntity {
     }
 
     public String toJson() {
-        return String.format("{date:'%s', country:'%s', city:'%s', technology:'%s', offerts:'%s' }", this.getDate(),
+        return String.format("{date:'%s', country:'%s', city:'%s', technology:'%s', offerts:'%s'}", this.getDate(),
                 this.getCountry(), this.getCity(), this.getTechnology(), this.getResult().toString());
     }
 
@@ -69,20 +69,17 @@ public class SearchEntity {
 
     @Override
     public String toString() {
-        return String.format("{date:'%s', country:'%s', city:'%s', technology:'%s' }", this.date, this.country,
-                this.getCity(), this.technology);
+        return String.format("%s,%s,%s,%s", this.date, this.country, this.getCity(), this.technology);
     }
 
     @Override
     public int hashCode() {
-        return -1;
+        return this.toString().hashCode();
     }
 
     @Override
     public boolean equals(Object obj) {
-        SearchEntity objSearch = (SearchEntity) obj;
-        return this.getDate().equals(objSearch.getDate()) & this.getCountry().equals(objSearch.getCountry())
-                & this.getCity().equals(objSearch.getCity()) & this.getTechnology().equals(objSearch.getTechnology());
+        return this.hashCode() == obj.hashCode();
     }
 
 }
